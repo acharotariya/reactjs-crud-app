@@ -1,4 +1,4 @@
 module.exports = {
-    secret: 'abcdefgabcdefg',
-    database: 'mongodb://localhost:27017/reactdb',
+    secret: 'your app secret for jwt',
+    database: 'your mongodb url',
 };

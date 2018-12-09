@@ -40,7 +40,7 @@ class Header extends Component {
                                 <NavLink to="#">Home</NavLink>
                             </NavItem>
                         </NavbarNav>
-                        <NavbarNav middle>
+                        <NavbarNav middle="true">
                             <NavItem>
                                 <NavLink to="#">Reactjs-express-mongodb crud-app</NavLink>
                             </NavItem>

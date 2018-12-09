@@ -14,7 +14,6 @@ class AddItem extends Component {
     }
     this.onSubmit = this.handleAddItemSubmit.bind(this);
     this.inputformvalue = this.inputformvalue.bind(this);
-    // this.showValue = this.showValue.bind(this);
   }
   handleAddItemSubmit(event) {
     event.preventDefault();
@@ -27,12 +26,14 @@ class AddItem extends Component {
       body: JSON.stringify({
         fruit: event.target.fruit.value,
         price: event.target.price.value
-      }),
+      })
     }).then((response) => {
-      if (response.ok) {
+      if(response) {
         console.log("response >>>>>>>>>>", response)
-      } else {
-        // notify.show("add item failed.. ", "error", 5000);
+        response.json().then((data) => {
+          console.log(data);
+          this.props.history.push('/viewrecord')
+      });
       }
     })
   }
@@ -41,24 +42,21 @@ class AddItem extends Component {
       [event.target.name]: event.target.value
     });
   }
-  //    showValue(event){
-  //     event.preventDefault();
-  //     alert('fruit: '+ this.state.fruit + ' price: ' + this.state.price)
-  // }
+
   render() {
 
     return (
       <div style={{ "margin": "0 auto", "width": "50%" }}>
         <br />
-        <form method="post" onSubmit={this.handleAddItemSubmit}>
-          <p className="h5 text-center mb-4"><h4>AddItem</h4></p>
+        <form onSubmit={this.handleAddItemSubmit}>
+          <p className="text-center mb-4"><h4>AddItem</h4></p>
           <Input label="enter fruit name" icon="envelope" name="fruit" onChange={this.inputformvalue} validate error="wrong" success="right" />
           <Input label="enter fruit price" icon="lock" name="price" onChange={this.inputformvalue} validate />
           <div className="text-center">
             <Button type="submit">AddItem</Button>
-            {/* onClick={this.showValue}     */}
           </div>
         </form>
+        
       </div>
     );
   }

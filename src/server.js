@@ -19,10 +19,10 @@ app.set('view engine', 'ejs');
 let str= "";
 
 
-app.get('/', function (req, res) {
-    // res.send("Hello world!");
-    res.sendFile('index.html');
-});
+// app.get('/', function (req, res) {
+//     // res.send("Hello world!");
+//     res.sendFile('index.html');
+// });
 
 
 let getEmail = function (email) {
@@ -109,12 +109,11 @@ app.post('/additem', async function (req, res) {
     let item = new Items({ fruit: req.body.fruit, price: req.body.price  });
         itemdata= await item.save();
         console.log("itemdata",itemdata)
-        // res.status(201);
-        res.send(JSON.stringify({"status":"1","code":"201","message":"Additem Succesfully."}));
-
+        res.status(201);
+        res.send(JSON.stringify({"status":"1","code":"201","message":"add item Succesfully"}));
 })
 
-app.put('/editItem/(:id)', async function (req, res) {
+app.put('/edititem/(:id)', async function (req, res) {
     console.log("req", req.params.id)
     let items = await Items.find({ _id: req.params.id });
     let data = items[0];
@@ -129,12 +128,13 @@ app.put('/editItem/(:id)', async function (req, res) {
         };
 
         let up = await Items.findOneAndUpdate(query, update, { returnNewDocument: true, new: true })
-
         console.log("up",up)
+        // res.send(up);
+        res.send(JSON.stringify({"status":"1","code":"201","message":"update Succesfully.","data": up}));
     }
 })
 
-app.delete('/deleteItem/(:id)', async function (req, res) {
+app.delete('/deleteitem/(:id)', async function (req, res) {
     console.log("req",  req.params.id)
     let items = await Items.find({ _id :req.params.id});
     let data = items[0];
@@ -145,17 +145,17 @@ app.delete('/deleteItem/(:id)', async function (req, res) {
     } else {
        query = { _id: req.params.id  }
        let data = await Items.findOneAndRemove(query)
-
         console.log("data",data)
+        res.send(JSON.stringify({"status":"1","code":"200","message":"delete item Succesfully"}));
     }
 })
 
 app.get('/getItem', async function(req, res){
  let items = await Items.find({});
-    let data = items[0];
-    console.log(data)
-    res.status(201);
-        res.send({data});
+    // let data = items[0];
+    // console.log(data)
+    // res.status(201);
+        res.send(items);
 	// Items.find({}, function(err, docs){
     //     var result = docs;
 	// 	if(err) res.json(err);
