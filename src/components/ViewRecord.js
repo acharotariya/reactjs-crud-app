@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Table, TableBody, TableHead, MDBBtn   } from 'mdbreact';
+
 class ViewRecord extends Component {
    constructor(props){
       super(props)
@@ -44,7 +45,7 @@ class ViewRecord extends Component {
    additem = () => {
       this.props.history.push({
          pathname: '/additem'
-       })
+      })
    }
 
       render() {

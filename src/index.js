@@ -5,7 +5,8 @@ import Home from './components/home';
 // import Dashboard from './components/dashboard';
 import AddItem from './components/AddItem';
 import ViewRecord from './components/ViewRecord';
-import edititem from './components/edititem';
+import edititem from './components/edititem'
+import multiform from './components/multipleformsfield';
 ReactDOM.render(
   <Router>
       <div>
@@ -13,7 +14,8 @@ ReactDOM.render(
          {/* <Route exact path='/dashboard' component={ Dashboard } /> */}
          <Route path='/additem' component={AddItem} /> 
         <Route path='/viewrecord' component={ViewRecord} />
-        <Route path='/edititem' component={edititem} />  
+        <Route path='/edititem' component={edititem} /> 
+        <Route path='/forms' component={multiform} />   
       </div>
   </Router>,
   document.getElementById('root')
